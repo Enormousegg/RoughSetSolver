@@ -1,14 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[251]:
-
-
 import pandas as pd
 from jenkspy import JenksNaturalBreaks
-
-
-# In[252]:
 
 
 #自然断点处理数据
@@ -29,9 +23,6 @@ data = data.drop(columns='D')
 data = data.drop('自然断点',axis=1)
 
 data.insert(loc=len(data.columns),column='D',value=NewD)
-
-
-# In[253]:
 
 
 def GetDict(index_list,data):
@@ -77,9 +68,6 @@ def GetPositive(ConditionAttribIND,DecisionAttribIND):
     return ans
 
 
-# In[254]:
-
-
 
 sampleList = ['C11 C12 C13','C21 C22 C23 C24 C25 C26 C27 C28','C31 C32','','D']
 IND = dict()
@@ -101,9 +89,6 @@ for sample in sampleList:
         IND[sample]  = GetIND(attri,data)
 
 
-# In[255]:
-
-
 posDict = dict()
 for key in IND:
     if(key!='D'):
@@ -122,9 +107,6 @@ for value in ImportanceDict.values():
 for key in ImportanceDict:
     WeightDict[key] = ImportanceDict[key]/SumImportance
 print(WeightDict)
-
-
-# In[256]:
 
 
 #计算二级指标
@@ -174,13 +156,11 @@ def GetSecond(dataIn,attriList):
     return WeightDict
 
 
-# In[257]:
-
-
 C1Weight = GetSecond(data,['C11','C12','C13','D'])
 C2Weight = GetSecond(data,['C21','C22','C23','C24','C25','C26','C27','C28','D'])
 C3Weight = GetSecond(data,['C31','C32','D'])
 
+#结果
 TotalWeight = dict()
 
 #C1
@@ -198,7 +178,6 @@ for key in C3Weight:
 print(TotalWeight)
 
 
-# In[ ]:
 
 
 
